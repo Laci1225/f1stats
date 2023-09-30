@@ -1,7 +1,6 @@
 import {Races} from "../models/seasons.ts";
 import {useEffect, useState} from "react";
 import {wikipediaRequest} from "../api/common.ts";
-import {Card, CardBody,Text} from "@chakra-ui/react";
 
 interface RaceProps {
     races: Races
@@ -20,24 +19,32 @@ export default function Race({races}: RaceProps) {
                 setContent(pageContent);
             })
     }, [races.Circuit.circuitName]);
-    const popUpCard = () => {
-        return (
-            <Card>
-                <CardBody>
-                    <Text>View a summary of all your customers over the last month.</Text>
-                </CardBody>
-            </Card>
-        )
-    }
+
+    const [isHovered, setIsHovered] = useState(false);
+
+    const handleMouseEnter = () => {
+        setIsHovered(true);
+        return (content)
+    };
+
+    const handleMouseLeave = () => {
+        setIsHovered(false);
+    };
     return (
         <div className={"flex flex-row"}>
-            <div className={"text-[3px]"}>{content}</div>
             <div
                 className={"border-t border-dashed min-h-[40px] w-2/12 flex items-center justify-center"}>{races.round}</div>
             <div
                 className={"border-t border-dashed min-h-[40px] w-4/12 flex items-center "}>{races.raceName}</div>
             <div
-                className={"border-t border-dashed min-h-[40px] w-4/12 flex items-center "}>{races.Circuit.circuitName}</div>
+                className={`border-t border-dashed min-h-[40px] w-4/12 flex items-center`}
+                onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+                {races.Circuit.circuitName}
+                {isHovered ?
+                    <div className={"absolute p-3 h-[300px] overflow-hidden bg-gray-700"}>{
+                        content}</div>
+                    : ""}
+            </div>
             <div
                 className={"border-t border-dashed min-h-[40px] w-2/12 flex items-center justify-center"}>{races.date}</div>
         </div>

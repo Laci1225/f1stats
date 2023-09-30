@@ -23,7 +23,7 @@ export default function ChosenSeason() {
             <div className={"h-0.5 border-2 border-solid border-white my-4"}></div>
             <div className={"flex justify-center"}>
 
-                <div className={"flex flex-col justify-between w-4/6  border-2 border-white min-h-[500px]"}>
+                <div className={"flex flex-col justify-between w-4/6  border-2 border-white min-h-[300px]"}>
                     <div className={"flex flex-row w-full min-h-[40px]"}>
                         <div className={"w-2/12 flex items-center justify-center"}>Round</div>
                         <div className={"w-4/12 flex items-center "}>Race name</div>
